@@ -16,11 +16,13 @@ const SubPage = () => {
   const router = useRouter();
   const subName = router.query.sub;
   const { data: sub, error, mutate } = useSWR(subName ? `/subs/${subName}` : null);
+
   useEffect(() => {
     if (!sub || !user) return;
     setOwnSub(authenticated && user.username === sub.username);
   }, [sub]);
   console.log("sub", sub);
+
   const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files === null) return;
 

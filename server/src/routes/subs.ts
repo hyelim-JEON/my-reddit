@@ -8,6 +8,30 @@ import { AppDataSource } from "../data-source";
 import Sub from "../entities/Sub";
 import Post from "../entities/Post";
 
+const getSub = async (req: Request, res: Response) => {
+  const name = req.params.name;
+  try {
+    const sub = await Sub.findOneByOrFail({ name });
+
+    // 포스트를 생성한 후에 해당 sub에 속하는 포스트 정보들을 넣어주기
+    const posts = await Post.find({
+      where: { subName: sub.name },
+      order: { createdAt: "DESC" },
+      relations: ["comments", "votes"],
+    });
+
+    sub.posts = posts;
+
+    if (res.locals.user) {
+      sub.posts.forEach((p) => p.setUserVote(res.locals.user));
+    }
+
+    return res.json(sub);
+  } catch (error) {
+    return res.status(404).json({ error: "커뮤니티를 찾을 수 없습니다." });
+  }
+};
+
 const createSub = async (req: Request, res: Response, next) => {
   const { name, title, description } = req.body;
   try {
@@ -67,6 +91,7 @@ const topSubs = async (req: Request, res: Response) => {
 
 const router = Router();
 
+router.get("/:name", userMiddleware, getSub);
 router.post("/", userMiddleware, authMiddleware, createSub);
 router.get("/sub/topSubs", topSubs);
 export default router;
