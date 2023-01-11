@@ -1,5 +1,5 @@
 import { Exclude, Expose } from "class-transformer";
-import { BeforeInsert, Column, Entity, Index, JoinColumn, ManyToMany, ManyToOne, OneToMany } from "typeorm";
+import { BeforeInsert, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { makeId } from "../utils/helpers";
 import BaseEntity from "./Entity";
 import Post from "./Post";
@@ -16,8 +16,7 @@ export default class Comment extends BaseEntity {
   body: string;
 
   @Column()
-  username;
-  string;
+  username: string;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: "username", referencedColumnName: "username" })

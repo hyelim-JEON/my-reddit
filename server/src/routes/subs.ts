@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response, Router } from "express";
-import jwt from "jsonwebtoken";
 import { User } from "../entities/User";
 import userMiddleware from "../middleware/user";
 import authMiddleware from "../middleware/auth";
@@ -38,12 +37,12 @@ const getSub = async (req: Request, res: Response) => {
 
 const createSub = async (req: Request, res: Response, next) => {
   const { name, title, description } = req.body;
+
   try {
     let errors: any = {};
     if (isEmpty(name)) errors.name = "이름은 비워둘 수 없습니다.";
-    if (isEmpty(title)) errors.title = "제목은 비워둘 수 없습니다.";
+    if (isEmpty(title)) errors.title = "제목은 비워두 수 없습니다.";
 
-    //같은이름 찾아내기
     const sub = await AppDataSource.getRepository(Sub)
       .createQueryBuilder("sub")
       .where("lower(sub.name) = :name", { name: name.toLowerCase() })

@@ -64,12 +64,12 @@ const PostCard = ({
           {!isInSubPage && (
             <div className="flex items-center">
               <Link href={`/r/${subName}`}>
-                <a>
+                <span>
                   <Image src={sub!.imageUrl} alt="sub" className="rounded-full cursor-pointer" width={12} height={12} />
-                </a>
+                </span>
               </Link>
               <Link href={`/r/${subName}`}>
-                <a className="ml-2 text-xs font-bold cursor-pointer hover:underline">/r/{subName}</a>
+                <span className="ml-2 text-xs font-bold cursor-pointer hover:underline">/r/{subName}</span>
               </Link>
               <span className="mx-1 text-xs text-gray-400">•</span>
             </div>
@@ -78,24 +78,24 @@ const PostCard = ({
           <p className="text-xs text-gray-400">
             Posted by
             <Link href={`/u/${username}`}>
-              <a className="mx-1 hover:underline">/u/{username}</a>
+              <span className="mx-1 hover:underline">/u/{username}</span>
             </Link>
             <Link href={url}>
-              <a className="mx-1 hover:underline">{dayjs(createdAt).format("YYYY-MM-DD HH:mm")}</a>
+              <span className="mx-1 hover:underline">{dayjs(createdAt).format("YYYY-MM-DD HH:mm")}</span>
             </Link>
           </p>
         </div>
 
         <Link href={url}>
-          <a className="my-1 text-lg font-medium">{title}</a>
+          <span className="my-1 text-lg font-medium">{title}</span>
         </Link>
         {body && <p className="my-1 text-sm">{body}</p>}
         <div className="flex">
           <Link href={url}>
-            <a>
+            <span>
               <i className="mr-1 fas fa-comment-alt fa-xs"></i>
               <span>{commentCount}</span>
-            </a>
+            </span>
           </Link>
         </div>
       </div>

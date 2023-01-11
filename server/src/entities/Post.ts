@@ -1,5 +1,4 @@
 import { Exclude, Expose } from "class-transformer";
-import { ValidationTypes } from "class-validator";
 import { BeforeInsert, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { makeId, slugify } from "../utils/helpers";
 import Comment from "./Comment";
@@ -47,7 +46,7 @@ export default class Post extends BaseEntity {
   votes: Vote[];
 
   @Expose() get url(): string {
-    return `r/${this.subName}/${this.identifier}/${this.slug}`;
+    return `/r/${this.subName}/${this.identifier}/${this.slug}`;
   }
 
   @Expose() get commentCount(): number {
