@@ -31,15 +31,15 @@ const UserPage = () => {
                 <div className="w-full p-2">
                   <p className="mb-2 text-xs text-gray-500">
                     <Link href={`/u/${comment.username}`}>
-                      <a className="cursor-pointer hover:underline">{comment.username}</a>
+                      <span className="cursor-pointer hover:underline">{comment.username}</span>
                     </Link>{" "}
                     <span>commented on</span>{" "}
                     <Link href={`/u/${comment.post?.url}`}>
-                      <a className="font-semibold cursor-pointer hover:underline">{comment.post?.title}</a>
+                      <span className="font-semibold cursor-pointer hover:underline">{comment.post?.title}</span>
                     </Link>{" "}
                     <span>•</span>{" "}
                     <Link href={`/u/${comment.post?.subName}`}>
-                      <a className="text-black cursor-pointer hover:underline">/r/{comment.post?.subName}</a>
+                      <span className="text-black cursor-pointer hover:underline">/r/{comment.post?.subName}</span>
                     </Link>
                   </p>
                   <hr />
