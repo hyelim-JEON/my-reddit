@@ -97,7 +97,7 @@ const Home: NextPage = () => {
             ))}
           </div>
           {authenticated && (
-            <div className="w-full py-6 text-center">
+            <div className="w-full py-8 text-center">
               <Link href="/subs/create">
                 <span className="w-full p-2 text-center text-white bg-gray-400 rounded">커뮤니티 만들기</span>
               </Link>
